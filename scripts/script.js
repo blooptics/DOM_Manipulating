@@ -71,8 +71,6 @@ topMenuEL.addEventListener('click', function (hClicker) {
         return;
     }
     // console.log(hClicker.target.textContent);
-
-
 });
 
 
@@ -80,10 +78,14 @@ const topMenuLinks = topMenuEL.querySelectorAll("a");
 
 topMenuEL.addEventListener("click", function (cPress) {
 
+    // Call prevent Default
     cPress.preventDefault();
+
+    // If the element clicked was not an <a> element
     if (cPress.target.tagName !== "A") {
         return;
     }
+    // Testing to see if it works
     console.log(cPress.target.textContent.toLowerCase());
 
     for (const link of topMenuLinks) {
@@ -98,7 +100,7 @@ topMenuEL.addEventListener("click", function (cPress) {
 
 });
 
-
+// console.dir(subMenuEl);
 
 // const topMenuLinks = document.querySelectorAll("a");
 
