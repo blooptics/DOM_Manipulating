@@ -64,7 +64,7 @@ for (let link of menuLinks) {
 }
 
 // Lab 4.2
-// const topMenuLinks = topMenuEl.querySelectorAll('a');
+
 topMenuEL.addEventListener('click', function (hClicker) {
     hClicker.preventDefault();
     if (hClicker.target.tagName !== 'A') {
@@ -93,24 +93,39 @@ topMenuEL.addEventListener("click", function (cPress) {
     }
     cPress.target.classList.toggle("active");
 
-    let clickedLink = cPress.target;
+    let linkObj = null;
+
+    //Loop through the menuLinks array
+    for (let link of menuLinks) {
+        //If the text in the array matches
+        if (link.text.toLowerCase() === cPress.target.textContent.toLowerCase()) {
+            linkObj = link;
+            break;         
+        }
+    }
+
+
+        //Set subMenuEl top property if subLinks exists
+        if (linkObj && linkObj.subLinks) {
+            subMenuEl.style.top = '100%';
+        } else {
+            subMenuEl.style.top = '0';
+        }
+
+        // console.log(linkObj);
+        // Clearing content?
+        subMenuEl.innerHTML = "";
+
+        for (let subLink of linkObj.subLinks) {
+
+
+            subMenuEl.setAttribute('href', subLink.href);
+            subLink.textContent = link.text;
+
+            subMenuEl.appendChild(subLinkEl);
+        }
+
     
-
-
-
 });
 
-// console.dir(subMenuEl);
-
-// const topMenuLinks = document.querySelectorAll("a");
-
-// for (const link of topMenuLinks) {
-//   link.addEventListener("click", function () {
-
-//     for (const otherLink of topMenuLinks) {
-//       otherLink.classList.remove("active");
-//     }
-
-//     this.classList.toggle("active");
-//   });
-// }
+// ///////
